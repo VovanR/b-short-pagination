@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+
+        <link rel="stylesheet" href="../vendor/qunit/qunit/qunit.css" media="screen">
+        <script src="../vendor/qunit/qunit/qunit.js"></script>
+    </head>
+    <body>
+        <div id="qunit"></div>
+        <div id="qunit-fixture">
+
+<!-- b-short-pagination begin -->
+<div class="b-short-pagination js-short-pagination">
+    <a class="b-short-pagination__prev js-short-pagination__prev" href="#">Previous page</a>
+
+    <span class="b-short-pagination__current js-short-pagination__current">0-0</span> <span class="b-short-pagination__total">from <span class="js-short-pagination__total">0</span></span>
+
+    <a class="b-short-pagination__next js-short-pagination__next" href="#">Next page</a>
+</div>
+<!-- b-short-pagination end -->
+
+        </div>
+
+        <script>
+        // Defer Qunit so RequireJS can work its magic and resolve all modules.
+        QUnit.config.autostart = false;
+        </script>
+        <script data-main="short-pagination-test" src="../vendor/requirejs/require.js"></script>
+    </body>
+</html>

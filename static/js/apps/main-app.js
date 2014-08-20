@@ -4,10 +4,10 @@
 
 define([
     'jquery',
-    '../modules/foo',
+    '../modules/short-pagination',
 ], function (
     $,
-    Foo
+    ShortPagination
 ) {
 
     var App;
@@ -26,10 +26,7 @@ define([
         _initialize: function () {
             console.info('App init');
 
-            this.Foo = new Foo();
-
-            var input = $('#foo-name');
-            input.val(this.Foo.getName());
+            this.ShortPagination = new ShortPagination();
         },
     };
 

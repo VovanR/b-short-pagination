@@ -6,19 +6,19 @@ define([
 ], function (
 ) {
 
-    var Foo;
+    var ShortPagination;
 
 
     /**
-     * Foo module
+     * ShortPagination module
      *
      * @constructor
      */
-    Foo = function () {
-        this.name = 'Foo';
+    ShortPagination = function () {
+        this.name = 'ShortPagination';
     };
 
-    Foo.prototype = {
+    ShortPagination.prototype = {
         /**
          * Returns module name
          *
@@ -30,6 +30,6 @@ define([
     };
 
 
-    return Foo;
+    return ShortPagination;
 
 });

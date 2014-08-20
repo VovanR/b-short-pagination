@@ -6,7 +6,8 @@
     "html5-boilerplate": "~4.3.0",
     "modernizr": "~2.8.3",
     "jquery": "~2.1.1",
-    "qunit": "~1.15.0"
+    "qunit": "~1.15.0",
+    "underscore": "~1.6.0"
   },
   "private": true
 }
