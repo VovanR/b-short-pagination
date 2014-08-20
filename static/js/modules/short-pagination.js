@@ -16,7 +16,6 @@ define([
         count: 0,
     };
 
-
     /**
      * ShortPagination module
      *
@@ -40,7 +39,6 @@ define([
             return this.o.count;
         },
     };
-
 
     return ShortPagination;
 

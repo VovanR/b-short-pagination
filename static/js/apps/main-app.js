@@ -12,7 +12,6 @@ define([
 
     var App;
 
-
     App = function () {
         this._initialize();
     };

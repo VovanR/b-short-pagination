@@ -1,7 +1,7 @@
 requirejs(['../js/common']);
 requirejs([
     '../js/modules/short-pagination',
-], function(
+], function (
     ShortPagination
 ) {
 
