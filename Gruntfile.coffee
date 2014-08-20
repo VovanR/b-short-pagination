@@ -51,11 +51,4 @@ module.exports = (grunt) ->
                 ]
                 tasks: 'newer:jshint:all'
 
-            qunit:
-                files: [
-                    'static/test/**/*.js',
-                    'static/test/**/*.html',
-                ]
-                tasks: 'qunit:all'
-
     grunt.registerTask 'default', ['jshint', 'watch']

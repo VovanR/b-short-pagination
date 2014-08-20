@@ -1,3 +1,4 @@
+requirejs(['../js/common']);
 requirejs([
     '../js/modules/short-pagination',
 ], function(
@@ -8,10 +9,13 @@ requirejs([
 
     QUnit.start();
 
-    test('ShortPagination module', function () {
-        var shortPagination = new ShortPagination();
+    QUnit.test('ShortPagination module', function (assert) {
+        var sp = new ShortPagination({
+            count: 13,
+        });
 
-        equal(shortPagination.getName(), 'ShortPagination', 'Module name is ShortPagination');
+        assert.ok(sp.o.block, 'Should have block');
+        assert.equal(sp.getCount(), 13, 'Should return count');
     });
 
 });
