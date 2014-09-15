@@ -25,7 +25,9 @@ define([
         _initialize: function () {
             console.info('App init');
 
-            this.ShortPagination = new ShortPagination();
+            this.ShortPagination = new ShortPagination({
+                count: 100,
+            });
         },
     };
 
