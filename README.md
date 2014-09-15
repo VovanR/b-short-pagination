@@ -1,4 +1,6 @@
 b-short-pagination
 ==================
 
-Short pagination block
+Short pagination block RequireJS module.
+
+![Preview](preview.png)
