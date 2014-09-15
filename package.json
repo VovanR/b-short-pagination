@@ -7,6 +7,8 @@
     "grunt-contrib-watch": "",
     "grunt-jscs": "",
     "grunt-newer": "",
+    "jscs": "",
+    "jscs-jsdoc": "",
     "jshint-stylish": "",
     "load-grunt-tasks": ""
   }
