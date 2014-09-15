@@ -6,7 +6,7 @@ require(['./common'], function (common) {
 
     var app;
 
-    require(['./apps/main-app'], function (App) {
+    require(['./apps/example-app'], function (App) {
         app = new App();
     });
 
