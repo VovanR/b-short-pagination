@@ -1,15 +1,23 @@
 {
+  "name": "b-short-pagination",
+  "version": "0.0.0",
+  "description": "Short pagination block RequireJS module",
+  "homepage": "https://github.com/VovanR/b-short-pagination",
+  "license": "MIT",
+  "repository": "VovanR/b-short-pagination",
+  "author": {
+    "name": "VovanR",
+    "url": "http://vovanr.com/"
+  },
   "devDependencies": {
     "bower": "",
-    "grunt": "",
-    "grunt-contrib-jshint": "",
-    "grunt-contrib-qunit": "",
-    "grunt-contrib-watch": "",
-    "grunt-jscs": "",
-    "grunt-newer": "",
+    "gulp": "",
+    "gulp-jscs": "",
+    "gulp-jshint": "",
+    "gulp-mocha-phantomjs": "",
+    "gulp-notify": "",
     "jscs": "",
     "jscs-jsdoc": "",
-    "jshint-stylish": "",
-    "load-grunt-tasks": ""
+    "jshint-stylish": ""
   }
 }

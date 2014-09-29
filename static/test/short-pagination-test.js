@@ -1,150 +1,184 @@
 requirejs([
+    '../vendor/chai/chai',
     '../js/modules/short-pagination',
     'jquery',
 ], function (
+    chai,
     ShortPagination,
     $
 ) {
 
     'use strict';
 
-    QUnit.start();
+    mocha.setup('bdd');
+    var assert = chai.assert;
 
-    QUnit.module('ShortPagination module', {
-        setup: function () {
-            this.p = new ShortPagination({
+    describe('ShortPagination', function () {
+        var module = function () {
+            return new ShortPagination({
+                block: $('.js-short-pagination'),
                 count: 13,
                 page: 1,
                 perpage: 12,
             });
-        },
-        teardown: function () {
-        }
+        };
+
+        var _bFixtureTemplate = $('#fixture-template');
+        var _fixtureTemplate = _bFixtureTemplate.html();
+        _bFixtureTemplate.empty();
+
+        beforeEach(function () {
+            $('#fixtures').html(_fixtureTemplate);
+        });
+
+        afterEach(function () {
+        });
+
+        describe('constructor', function () {
+            it('should initialize', function () {
+                var m = module();
+                assert.isDefined(m);
+            });
+
+            it('should have block', function () {
+                var m = module();
+                assert.isDefined(m.o.block[0]);
+            });
+        });
+
+        describe('#getCount', function () {
+            it('should return count of items', function () {
+                var m = module();
+                assert.equal(m.getCount(), 13);
+            });
+        });
+
+        describe('#getMaxPage', function () {
+            it('should return last page number', function () {
+                var m = module();
+                assert.equal(m.getMaxPage(), 2);
+            });
+        });
+
+        describe('#getMaxPage', function () {
+            it('should return `1`, if there is no items', function () {
+                var m = module();
+                m.setData(1, 0);
+                assert.equal(m.getMaxPage(), 1);
+            });
+        });
+
+        describe('#getPage', function () {
+            it('should return current page number', function () {
+                var m = module();
+                assert.equal(m.getPage(), 1);
+            });
+        });
+
+        describe('#setPage', function () {
+            it('should change page', function () {
+                var m = module();
+                m.setPage(2);
+                assert.equal(m.getPage(), 2);
+            });
+        });
+
+        describe('#setPage', function () {
+            it('should not set wrong page', function () {
+                var m = module();
+                m.setPage(3);
+                assert.equal(m.getPage(), 2);
+
+                m.setPage(0);
+                assert.equal(m.getPage(), 1);
+            });
+        });
+
+        describe('#setPage', function () {
+            it('should change index of first showed item', function () {
+                var m = module();
+                m.setPage(2);
+                assert.equal(m.getFrom(), 13);
+            });
+        });
+
+        describe('#setPage', function () {
+            it('should change index of last showed item', function () {
+                var m = module();
+                m.setPage(2);
+                assert.equal(m.getTo(), 13);
+            });
+        });
+
+        describe('#getFrom', function () {
+            it('should return index of first showed item', function () {
+                var m = module();
+                assert.equal(m.getFrom(), 1);
+                m.setData(1, 0);
+                assert.equal(m.getFrom(), 0);
+            });
+        });
+
+        describe('#getTo', function () {
+            it('should return index of last showed item', function () {
+                var m = module();
+                assert.equal(m.getTo(), 12);
+            });
+        });
+
+        describe('#setData', function () {
+            it('should change page and count', function () {
+                var m = module();
+                m.setData(3, 35);
+                assert.equal(m.getPage(), 3);
+                assert.equal(m.getCount(), 35);
+            });
+        });
+
+        describe('#setData', function () {
+            it('should fire render', function () {
+                var m = module();
+                m.setData(3, 35);
+                assert.equal(m.o.block.find('.js-short-pagination__current').text(), '25-35');
+                assert.equal(m.o.block.find('.js-short-pagination__total').text(), 35);
+            });
+        });
+
+        describe('#gotoPage', function () {
+            it('should fire render', function () {
+                var m = module();
+                m.gotoPage(2);
+                assert.equal(m.o.block.find('.js-short-pagination__current').text(), '13-13');
+                assert.equal(m.o.block.find('.js-short-pagination__total').text(), 13);
+            });
+        });
+
+        describe('ui', function () {
+            describe('Click next', function () {
+                it('should set next page', function () {
+                    var m = module();
+                    assert.equal(m.getPage(), 1);
+                    m.o.block.find('.js-short-pagination__next').trigger('click');
+                    assert.equal(m.getPage(), 2);
+                });
+            });
+
+            describe('Click prev', function () {
+                it('should set prev page', function () {
+                    var m = module();
+                    m.setPage(2);
+                    assert.equal(m.getPage(), 2);
+                    m.o.block.find('.js-short-pagination__prev').trigger('click');
+                    assert.equal(m.getPage(), 1);
+                });
+            });
+        });
     });
 
-    QUnit.test('Should initialize', function (assert) {
-        var p = this.p;
-
-        assert.ok(p, 'Module is inited');
-        assert.ok(p.o.block, 'block');
-    });
-
-    QUnit.test('getCount should return count of items', function (assert) {
-        var p = this.p;
-
-        assert.equal(p.getCount(), 13);
-    });
-
-    QUnit.test('getMaxPage should return last page number', function (assert) {
-        var p = this.p;
-
-        assert.equal(p.getMaxPage(), 2);
-    });
-
-    QUnit.test('getMaxPage should return `1`, if there is no items', function (assert) {
-        var p = this.p;
-        p.setData(1, 0);
-
-        assert.equal(p.getMaxPage(), 1);
-    });
-
-    QUnit.test('getPage should return current page number', function (assert) {
-        var p = this.p;
-
-        assert.equal(p.getPage(), 1);
-    });
-
-    QUnit.test('setPage should change page', function (assert) {
-        var p = this.p;
-
-        p.setPage(2);
-
-        assert.equal(p.getPage(), 2);
-    });
-
-    QUnit.test('setPage should not set wrong page', function (assert) {
-        var p = this.p;
-
-        p.setPage(3);
-        assert.equal(p.getPage(), 2);
-
-        p.setPage(0);
-        assert.equal(p.getPage(), 1);
-    });
-
-    QUnit.test('setPage should change index of first showed item', function (assert) {
-        var p = this.p;
-
-        p.setPage(2);
-
-        assert.equal(p.getFrom(), 13);
-    });
-
-    QUnit.test('setPage should change index of last showed item', function (assert) {
-        var p = this.p;
-
-        p.setPage(2);
-
-        assert.equal(p.getTo(), 13);
-    });
-
-    QUnit.test('getFrom should return index of first showed item', function (assert) {
-        var p = this.p;
-
-        assert.equal(p.getFrom(), 1);
-
-        p.setData(1, 0);
-        assert.equal(p.getFrom(), 0);
-    });
-
-    QUnit.test('getTo should return index of last showed item', function (assert) {
-        var p = this.p;
-
-        assert.equal(p.getTo(), 12);
-    });
-
-    QUnit.test('setData should change page and count', function (assert) {
-        var p = this.p;
-
-        p.setData(3, 35);
-
-        assert.equal(p.getPage(), 3);
-        assert.equal(p.getCount(), 35);
-    });
-
-    QUnit.test('setData should fire render', function (assert) {
-        var p = this.p;
-
-        p.setData(3, 35);
-
-        assert.equal(p.o.block.find('.js-short-pagination__current').text(), '25-35');
-        assert.equal(p.o.block.find('.js-short-pagination__total').text(), 35);
-    });
-
-    QUnit.test('gotoPage should fire render', function (assert) {
-        var p = this.p;
-
-        p.gotoPage(2);
-
-        assert.equal(p.o.block.find('.js-short-pagination__current').text(), '13-13');
-        assert.equal(p.o.block.find('.js-short-pagination__total').text(), 13);
-    });
-
-    QUnit.test('Click next should set next page', function (assert) {
-        var p = this.p;
-
-        assert.equal(p.getPage(), 1);
-        p.o.block.find('.js-short-pagination__next').trigger('click');
-        assert.equal(p.getPage(), 2);
-    });
-
-    QUnit.test('Click prev should set prev page', function (assert) {
-        var p = this.p;
-
-        p.setPage(2);
-        assert.equal(p.getPage(), 2);
-        p.o.block.find('.js-short-pagination__prev').trigger('click');
-        assert.equal(p.getPage(), 1);
-    });
+    if (window.mochaPhantomJS) {
+        mochaPhantomJS.run();
+    } else {
+        mocha.run();
+    }
 
 });

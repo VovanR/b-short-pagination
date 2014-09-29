@@ -10,6 +10,8 @@ define([
     _
 ) {
 
+    'use strict';
+
     var ShortPagination;
     var defaults = {
         block: $('.js-short-pagination'),
