@@ -17,6 +17,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+
 <!-- b-short-pagination begin -->
 <div class="b-short-pagination js-short-pagination">
     <a class="b-short-pagination__prev js-short-pagination__prev" href="#">Previous page</a>
@@ -27,6 +28,15 @@
 </div>
 <!-- b-short-pagination end -->
 
-        <script data-main="../js/example" src="../vendor/requirejs/require.js"></script>
+
+        <script src="../vendor/requirejs/require.js"></script>
+        <script>
+        requirejs.config.baseUrl = './';
+        requirejs(['../common'], function (common) {
+            requirejs(['./js/app'], function (App) {
+                var app = new App();
+            });
+        });
+        </script>
     </body>
 </html>

@@ -1,11 +1,11 @@
 requirejs([
     '../vendor/chai/chai',
-    '../js/modules/short-pagination',
     'jquery',
+    '../index',
 ], function (
     chai,
-    ShortPagination,
-    $
+    $,
+    ShortPagination
 ) {
 
     'use strict';

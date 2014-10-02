@@ -4,7 +4,7 @@
 
 define([
     'jquery',
-    '../modules/short-pagination',
+    '../../index',
 ], function (
     $,
     ShortPagination
