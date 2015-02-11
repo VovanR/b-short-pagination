@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
+var jsdoc = require('gulp-jsdoc');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 gulp.task('lint', function () {
@@ -19,6 +20,12 @@ gulp.task('test', function () {
         .pipe(mochaPhantomJS({
             reporter: 'spec',
         }));
+});
+
+gulp.task('jsdoc', function () {
+    return gulp
+        .src('./index.js')
+        .pipe(jsdoc('./documentation-output'));
 });
 
 gulp.task('default', ['lint', 'test']);

@@ -1,7 +1,11 @@
 /**
+ * ShortPagination module
+ *
+ * @module ShortPagination
+ * @see {@link https://github.com/VovanR/b-short-pagination|GitHub}
  * @author VovanR <mail@vovanr.com>
+ * @version 0.0.0
  */
-
 define([
     'jquery',
     'underscore',
@@ -12,26 +16,23 @@ define([
 
     'use strict';
 
-    var ShortPagination;
-    var defaults = {
-        block: $('.js-short-pagination'),
-        count: 0,
-        page: 1,
-        perpage: 12,
-    };
-
     /**
-     * ShortPagination module
-     *
      * @param {Object} [o={}] Options
      * @param {jQuery} [o.block=$('.js-short-pagination')] Module block
      * @param {Number} [o.count=0] Count of items
      * @param {Number} [o.page=0] Current page number
      * @param {Number} [o.perpage=12] Items per page
+     * @constructor
+     * @alias module:ShortPagination
      */
-    ShortPagination = function (o) {
+    var ShortPagination = function (o) {
         this.o = o || {};
-        _.defaults(this.o, defaults);
+        _.defaults(this.o, {
+            block: $('.js-short-pagination'),
+            count: 0,
+            page: 1,
+            perpage: 12,
+        });
 
         var block = this.o.block;
         this.bCurrent = block.find('.js-short-pagination__current');
@@ -79,7 +80,7 @@ define([
          * Sets the current page number
          *
          * @param {Number} page
-         * @chainable
+         * @return {ShortPagination}
          */
         setPage: function (page) {
             if (page > 0 && page <= this.getMaxPage()) {
@@ -128,7 +129,7 @@ define([
         /**
          * Returns the number of items
          *
-         * @returns {Number} count
+         * @return {Number} count
          */
         getCount: function () {
             return this.o.count;
@@ -137,7 +138,7 @@ define([
         /**
          * Returns the current page number
          *
-         * @returns {Number} page
+         * @return {Number} page
          */
         getPage: function () {
             return this.o.page;
@@ -147,7 +148,7 @@ define([
          * Sets count of items
          *
          * @param {Number} count
-         * @chainable
+         * @return {ShortPagination}
          */
         setCount: function (count) {
             this.o.count = count;
@@ -158,7 +159,7 @@ define([
         /**
          * Returns the last page number
          *
-         * @returns {Number} maxPage
+         * @return {Number} maxPage
          */
         getMaxPage: function () {
             // Minimum one page, not zero
@@ -168,7 +169,7 @@ define([
         /**
          * Returns the number of the first item on current page
          *
-         * @returns {Number} from
+         * @return {Number} from
          */
         getFrom: function () {
             var from = 0;
@@ -183,7 +184,7 @@ define([
         /**
          * Returns the number of the last item in current page
          *
-         * @returns {Number} to
+         * @return {Number} to
          */
         getTo: function () {
             var to;
